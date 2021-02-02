@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="Dirt3TelemetryDisplay.Controls.Float4Box"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dirt3TelemetryDisplay"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="400" MinWidth="160" Height="25">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Margin="0, -5, 0, 0"
+                Grid.Row="0" 
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center">x</Label>
+            <TextBox
+                Margin="0, 0, 0, 5"
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{
+                    Binding XComponent, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=LostFocus,
+                    StringFormat={}{0:G}}"
+                VerticalContentAlignment="Center"
+                Name="txtXValue" 
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                TextWrapping="Wrap"
+                AcceptsReturn="False"
+                SpellCheck.IsEnabled="False"
+                IsReadOnly="{Binding IsReadOnly}"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Margin="0, -5, 0, 0"
+                Grid.Row="0" 
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center">y</Label>
+            <TextBox
+                Margin="0, 0, 0, 5"
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{
+                    Binding YComponent, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=LostFocus,
+                    StringFormat={}{0:G}}"
+                VerticalContentAlignment="Center"
+                Name="txtYValue" 
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                TextWrapping="Wrap"
+                AcceptsReturn="False"
+                SpellCheck.IsEnabled="False"
+                IsReadOnly="{Binding IsReadOnly}"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Margin="0, -5, 0, 0"
+                Grid.Row="0" 
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center">z</Label>
+            <TextBox
+                Margin="0, 0, 0, 5"
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{
+                    Binding ZComponent, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=LostFocus,
+                    StringFormat={}{0:G}}"
+                VerticalContentAlignment="Center"
+                Name="txtZValue" 
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                TextWrapping="Wrap"
+                AcceptsReturn="False"
+                SpellCheck.IsEnabled="False"
+                IsReadOnly="{Binding IsReadOnly}"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                Margin="0, -5, 0, 0"
+                Grid.Row="0" 
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalContentAlignment="Center">w</Label>
+            <TextBox
+                Margin="0, 0, 0, 5"
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{
+                    Binding WComponent, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=LostFocus,
+                    StringFormat={}{0:G}}"
+                VerticalContentAlignment="Center"
+                Name="txtWValue" 
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                TextWrapping="Wrap"
+                AcceptsReturn="False"
+                SpellCheck.IsEnabled="False"
+                IsReadOnly="{Binding IsReadOnly}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

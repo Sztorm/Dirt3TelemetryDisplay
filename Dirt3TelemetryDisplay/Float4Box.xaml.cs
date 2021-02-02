@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,14 +11,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dirt3TelemetryDisplay
+namespace Dirt3TelemetryDisplay.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Float4Box.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Float4Box : UserControl
     {
-        public MainWindow()
+        public bool IsReadOnly { get; set; }
+
+        public float XComponent { get; set; }
+
+        public float YComponent { get; set; }
+
+        public float ZComponent { get; set; }
+
+        public float WComponent { get; set; }
+
+        public Float4Box()
         {
             InitializeComponent();
             DataContext = this;
