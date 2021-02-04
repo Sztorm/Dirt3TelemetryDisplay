@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dirt3TelemetryDisplay"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             x:Name="parent"
              d:DesignHeight="25" d:DesignWidth="200" MinWidth="80" Height="25">
-    <Grid>
+    <Grid DataContext="{Binding ElementName=parent}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -14,6 +15,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -22,18 +24,21 @@
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
             <Label 
-                Margin="0, -5, 0, 0"
+                Padding="0, 0, 0, 5"
+                VerticalAlignment="Center"
                 Grid.Row="0" 
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 VerticalContentAlignment="Center">x</Label>
+            
             <TextBox
-                Margin="0, 0, 0, 5"
+                VerticalAlignment="Center"
                 Grid.Row="0"
                 Grid.Column="2"
                 Text="{
-                    Binding XComponent, 
+                    Binding ValueX, 
                     Mode=TwoWay, 
                     UpdateSourceTrigger=LostFocus,
                     StringFormat={}{0:G}}"
@@ -44,6 +49,7 @@
                 AcceptsReturn="False"
                 SpellCheck.IsEnabled="False"
                 IsReadOnly="{Binding IsReadOnly}"/>
+            
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1">
@@ -54,18 +60,21 @@
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
             <Label 
-                Margin="0, -5, 0, 0"
+                Padding="0, 0, 0, 5"
+                VerticalAlignment="Center"
                 Grid.Row="0" 
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 VerticalContentAlignment="Center">y</Label>
+            
             <TextBox
-                Margin="0, 0, 0, 5"
                 Grid.Row="0"
                 Grid.Column="2"
+                VerticalAlignment="Center"
                 Text="{
-                    Binding YComponent, 
+                    Binding ValueY, 
                     Mode=TwoWay, 
                     UpdateSourceTrigger=LostFocus,
                     StringFormat={}{0:G}}"
@@ -76,6 +85,7 @@
                 AcceptsReturn="False"
                 SpellCheck.IsEnabled="False"
                 IsReadOnly="{Binding IsReadOnly}"/>
+            
         </Grid>
 
     </Grid>

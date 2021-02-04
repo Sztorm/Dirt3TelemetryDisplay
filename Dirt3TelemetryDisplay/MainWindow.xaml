@@ -6,15 +6,87 @@
         xmlns:local="clr-namespace:Dirt3TelemetryDisplay"
         xmlns:uc="clr-namespace:Dirt3TelemetryDisplay.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="450" 
+        Width="800" 
+        MinWidth="350" 
+        MinHeight="150" >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
+
+        <Border 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3" 
+            BorderBrush="#aaa" 
+            BorderThickness="0, 0, 0, 1" />
+
+        <TextBlock 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Margin="5, 0, 5, 0" 
+            VerticalAlignment="Center"
+            Text="Bytes" />
+
+        <TextBlock 
+            Grid.Row="0" 
+            Grid.Column="1" 
+            Margin="0, 0, 5, 0" 
+            VerticalAlignment="Center"
+            Text="Field name" />
+
+        <TextBlock 
+            Grid.Row="0" 
+            Grid.Column="2" 
+            Margin="0, 0, 5, 0" 
+            VerticalAlignment="Center"
+            Text="Field value" />
+
+        <ScrollViewer 
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3" 
+            Margin="0, 5, 0, 0" 
+            VerticalScrollBarVisibility="Auto" 
+            HorizontalScrollBarVisibility="Disabled" >
+            
+            <ItemsControl>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="0" 
+                    BytesRangeEnd="4" 
+                    FieldName="Float field" 
+                    FieldValue="4.22"/>
+                <uc:InfoItemFloat2 
+                    BytesRangeStart="4" 
+                    BytesRangeEnd="12" 
+                    FieldName="Float2 field" 
+                    FieldValueX="1" 
+                    FieldValueY="2"/>
+                <uc:InfoItemFloat3 
+                    BytesRangeStart="12" 
+                    BytesRangeEnd="24" 
+                    FieldName="Float3 field" 
+                    FieldValueX="3" 
+                    FieldValueY="5" 
+                    FieldValueZ="6"/>
+                <uc:InfoItemFloat4 
+                    BytesRangeStart="24" 
+                    BytesRangeEnd="40" 
+                    FieldName="Float4 field" 
+                    FieldValueX="6" 
+                    FieldValueY="55323897753789" 
+                    FieldValueZ="42424224" 
+                    FieldValueW="-24"/>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 
 </Window>

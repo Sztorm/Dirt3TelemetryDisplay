@@ -19,18 +19,57 @@ namespace Dirt3TelemetryDisplay.Controls
     /// </summary>
     public partial class Float3Box : UserControl
     {
-        public bool IsReadOnly { get; set; }
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register(
+            nameof(IsReadOnly),
+            propertyType: typeof(bool),
+            ownerType: typeof(Float3Box),
+            new PropertyMetadata(defaultValue: false));
 
-        public float XComponent { get; set; }
+        public static readonly DependencyProperty ValueXProperty = DependencyProperty.Register(
+            nameof(ValueX),
+            propertyType: typeof(float),
+            ownerType: typeof(Float3Box),
+            new PropertyMetadata(defaultValue: 0f));
 
-        public float YComponent { get; set; }
+        public static readonly DependencyProperty ValueYProperty = DependencyProperty.Register(
+            nameof(ValueY),
+            propertyType: typeof(float),
+            ownerType: typeof(Float3Box),
+            new PropertyMetadata(defaultValue: 0f));
 
-        public float ZComponent { get; set; }
+        public static readonly DependencyProperty ValueZProperty = DependencyProperty.Register(
+            nameof(ValueZ),
+            propertyType: typeof(float),
+            ownerType: typeof(Float3Box),
+            new PropertyMetadata(defaultValue: 0f));
+
+        public bool IsReadOnly
+        {
+            get => (bool)GetValue(IsReadOnlyProperty);
+            set => SetValue(IsReadOnlyProperty, value);
+        }
+
+        public float ValueX
+        {
+            get => (float)GetValue(ValueXProperty);
+            set => SetValue(ValueXProperty, value);
+        }
+
+        public float ValueY
+        {
+            get => (float)GetValue(ValueYProperty);
+            set => SetValue(ValueYProperty, value);
+        }
+
+        public float ValueZ
+        {
+            get => (float)GetValue(ValueZProperty);
+            set => SetValue(ValueZProperty, value);
+        }
 
         public Float3Box()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }

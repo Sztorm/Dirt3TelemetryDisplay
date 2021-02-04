@@ -18,16 +18,45 @@ namespace Dirt3TelemetryDisplay.Controls
     /// </summary>
     public partial class Float2Box : UserControl
     {
-        public bool IsReadOnly { get; set; }
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register(
+            nameof(IsReadOnly),
+            propertyType: typeof(bool),
+            ownerType: typeof(Float2Box),
+            new PropertyMetadata(defaultValue: false));
 
-        public float XComponent { get; set; }
+        public static readonly DependencyProperty ValueXProperty = DependencyProperty.Register(
+            nameof(ValueX), 
+            propertyType: typeof(float), 
+            ownerType: typeof(Float2Box), 
+            new PropertyMetadata(defaultValue: 0f));
 
-        public float YComponent { get; set; }
+        public static readonly DependencyProperty ValueYProperty = DependencyProperty.Register(
+            nameof(ValueY),
+            propertyType: typeof(float),
+            ownerType: typeof(Float2Box),
+            new PropertyMetadata(defaultValue: 0f));
+
+        public bool IsReadOnly
+        {
+            get => (bool)GetValue(IsReadOnlyProperty);
+            set => SetValue(IsReadOnlyProperty, value);
+        }
+
+        public float ValueX
+        {
+            get => (float)GetValue(ValueXProperty);
+            set => SetValue(ValueXProperty, value);
+        }
+
+        public float ValueY
+        {
+            get => (float)GetValue(ValueYProperty);
+            set => SetValue(ValueYProperty, value);
+        }
 
         public Float2Box()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }
