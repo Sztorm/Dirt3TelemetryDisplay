@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dirt3TelemetryDisplay"
         xmlns:uc="clr-namespace:Dirt3TelemetryDisplay.Controls"
+        xmlns:ViewModels="clr-namespace:Dirt3TelemetryDisplay"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
         Width="800" 
-        MinWidth="350" 
-        MinHeight="150" >
-    <Grid>
+        MinWidth="510" 
+        MinHeight="175" >
+    <Window.Resources>
+        <ViewModels:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource MainWindowViewModel}}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -22,69 +27,247 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                x:Name="btnStart"
+                Width="75"
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Margin="5, 2, 0, 2">Start</Button>
+            <Button 
+                x:Name="btnStop"
+                Visibility="Hidden"
+                Width="75"
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Margin="5, 2, 0, 2">Stop</Button>
+
+            <Grid
+                Grid.Row="0" 
+                Grid.Column="2" 
+                Name="controlsGroupUiUpdateInterval">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0">
+                    UI update interval [ms]
+                </Label>
+                <Slider 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Value="{
+                        Binding ElementName=iBoxUiUpdateInterval, 
+                        Path=Value, 
+                        UpdateSourceTrigger=PropertyChanged}"
+                    Minimum="10"
+                    Maximum="1000"
+                    TickPlacement="BottomRight" TickFrequency="100"
+                    Width="100" />
+                <uc:IntBox 
+                    x:Name="iBoxUiUpdateInterval"
+                    Grid.Row="0" 
+                    Grid.Column="2" 
+                    Width="40" 
+                    Value="{Binding UiUpdateIntervalInMilliseconds }" />
+            </Grid>
+
+            <Grid 
+                Grid.Row="0" 
+                Grid.Column="3" 
+                Margin="0, 0, 5, 0"
+                Name="controlsGroupTelemetryPort">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0">
+                    Telemetry port
+                </Label>
+                <uc:IntBox 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Width="50" 
+                    Value="{Binding TelemetryPort}"/>
+            </Grid>
+        </Grid>
+
         <Border 
-            Grid.Row="0" 
+            Grid.Row="1" 
             Grid.Column="0" 
             Grid.ColumnSpan="3" 
             BorderBrush="#aaa" 
             BorderThickness="0, 0, 0, 1" />
 
         <TextBlock 
-            Grid.Row="0" 
+            Grid.Row="1" 
             Grid.Column="0" 
             Margin="5, 0, 5, 0" 
             VerticalAlignment="Center"
             Text="Bytes" />
 
         <TextBlock 
-            Grid.Row="0" 
+            Grid.Row="1" 
             Grid.Column="1" 
             Margin="0, 0, 5, 0" 
             VerticalAlignment="Center"
             Text="Field name" />
 
         <TextBlock 
-            Grid.Row="0" 
+            Grid.Row="1" 
             Grid.Column="2" 
             Margin="0, 0, 5, 0" 
             VerticalAlignment="Center"
             Text="Field value" />
-
+        
         <ScrollViewer 
-            Grid.Row="1" 
+            Grid.Row="2" 
             Grid.Column="0" 
             Grid.ColumnSpan="3" 
             Margin="0, 5, 0, 0" 
             VerticalScrollBarVisibility="Auto" 
             HorizontalScrollBarVisibility="Disabled" >
             
-            <ItemsControl>
+            <ItemsControl Name="infoItems">
                 <uc:InfoItemFloat 
                     BytesRangeStart="0" 
                     BytesRangeEnd="4" 
-                    FieldName="Float field" 
-                    FieldValue="4.22"/>
-                <uc:InfoItemFloat2 
+                    FieldName="Time [s]"/>
+                <uc:InfoItemFloat 
                     BytesRangeStart="4" 
+                    BytesRangeEnd="8" 
+                    FieldName="Current lap time [s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="8" 
                     BytesRangeEnd="12" 
-                    FieldName="Float2 field" 
-                    FieldValueX="1" 
-                    FieldValueY="2"/>
-                <uc:InfoItemFloat3 
+                    FieldName="Distance driven on current lap [m]"/>
+                <uc:InfoItemFloat 
                     BytesRangeStart="12" 
-                    BytesRangeEnd="24" 
-                    FieldName="Float3 field" 
-                    FieldValueX="3" 
-                    FieldValueY="5" 
-                    FieldValueZ="6"/>
-                <uc:InfoItemFloat4 
-                    BytesRangeStart="24" 
-                    BytesRangeEnd="40" 
-                    FieldName="Float4 field" 
-                    FieldValueX="6" 
-                    FieldValueY="55323897753789" 
-                    FieldValueZ="42424224" 
-                    FieldValueW="-24"/>
+                    BytesRangeEnd="16" 
+                    FieldName="Distance driven (normalized)"/>
+                <uc:InfoItemFloat3 
+                    BytesRangeStart="16" 
+                    BytesRangeEnd="28" 
+                    FieldName="World position [m]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="28" 
+                    BytesRangeEnd="32" 
+                    FieldName="Speed [m/s]"/>
+                <uc:InfoItemFloat3 
+                    BytesRangeStart="32" 
+                    BytesRangeEnd="44" 
+                    FieldName="Velocity [m/s]"/>
+                <uc:InfoItemFloat3 
+                    BytesRangeStart="44" 
+                    BytesRangeEnd="56" 
+                    FieldName="Object to world left direction (normalized)"/>
+                <uc:InfoItemFloat3 
+                    BytesRangeStart="56" 
+                    BytesRangeEnd="68" 
+                    FieldName="Object to world forward direction (normalized)"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="68" 
+                    BytesRangeEnd="72" 
+                    FieldName="Rear left suspension position [mm]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="72" 
+                    BytesRangeEnd="76" 
+                    FieldName="Rear right suspension position [mm]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="76" 
+                    BytesRangeEnd="80" 
+                    FieldName="Front left suspension position [mm]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="80" 
+                    BytesRangeEnd="84" 
+                    FieldName="Front right suspension position [mm]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="84" 
+                    BytesRangeEnd="88" 
+                    FieldName="Rear left suspension speed [mm/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="88" 
+                    BytesRangeEnd="92" 
+                    FieldName="Rear right suspension speed [mm/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="92" 
+                    BytesRangeEnd="96" 
+                    FieldName="Front left suspension speed [mm/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="96" 
+                    BytesRangeEnd="100" 
+                    FieldName="Front right suspension speed [mm/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="100" 
+                    BytesRangeEnd="104" 
+                    FieldName="Rear left wheel speed [m/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="104" 
+                    BytesRangeEnd="108" 
+                    FieldName="Rear right wheel speed [m/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="108" 
+                    BytesRangeEnd="112" 
+                    FieldName="Front left wheel speed [m/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="112" 
+                    BytesRangeEnd="116" 
+                    FieldName="Front right wheel speed [m/s]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="116" 
+                    BytesRangeEnd="120" 
+                    FieldName="Acceleration input [0, 1]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="120" 
+                    BytesRangeEnd="124" 
+                    FieldName="Steering input [-1, 1]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="124" 
+                    BytesRangeEnd="128" 
+                    FieldName="Brake input [0, 1]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="128" 
+                    BytesRangeEnd="132" 
+                    FieldName="Handbrake input [0, 1]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="132" 
+                    BytesRangeEnd="136" 
+                    FieldName="Gear (0: Neutral, 1: 1, 2: 2, .., 10: Reverse)"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="136" 
+                    BytesRangeEnd="140" 
+                    FieldName="G-force lateral [g]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="140" 
+                    BytesRangeEnd="144" 
+                    FieldName="G-force longitudinal [g]"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="144" 
+                    BytesRangeEnd="148" 
+                    FieldName="Current lap (indexing from zero)"/>
+                <uc:InfoItemFloat 
+                    BytesRangeStart="148" 
+                    BytesRangeEnd="152" 
+                    FieldName="Engine RPM * 0.1"/>
             </ItemsControl>
         </ScrollViewer>
     </Grid>
