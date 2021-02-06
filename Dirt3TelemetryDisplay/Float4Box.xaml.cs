@@ -28,25 +28,29 @@ namespace Dirt3TelemetryDisplay.Controls
             nameof(ValueX),
             propertyType: typeof(float),
             ownerType: typeof(Float4Box),
-            new PropertyMetadata(defaultValue: 0f));
+            new FrameworkPropertyMetadata(defaultValue: 0f,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty ValueYProperty = DependencyProperty.Register(
             nameof(ValueY),
             propertyType: typeof(float),
             ownerType: typeof(Float4Box),
-            new PropertyMetadata(defaultValue: 0f));
+            new FrameworkPropertyMetadata(defaultValue: 0f,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty ValueZProperty = DependencyProperty.Register(
             nameof(ValueZ),
             propertyType: typeof(float),
             ownerType: typeof(Float4Box),
-            new PropertyMetadata(defaultValue: 0f));
+            new FrameworkPropertyMetadata(defaultValue: 0f,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty ValueWProperty = DependencyProperty.Register(
             nameof(ValueW),
             propertyType: typeof(float),
             ownerType: typeof(Float4Box),
-            new PropertyMetadata(defaultValue: 0f));
+            new FrameworkPropertyMetadata(defaultValue: 0f,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
         public bool IsReadOnly

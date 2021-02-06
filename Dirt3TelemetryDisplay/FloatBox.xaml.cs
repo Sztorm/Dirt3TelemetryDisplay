@@ -28,7 +28,8 @@ namespace Dirt3TelemetryDisplay.Controls
             nameof(Value),
             propertyType: typeof(float),
             ownerType: typeof(FloatBox),
-            new PropertyMetadata(defaultValue: 0f));
+            new FrameworkPropertyMetadata(defaultValue: 0f,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public bool IsReadOnly
         {

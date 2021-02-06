@@ -18,7 +18,6 @@ namespace Dirt3TelemetryDisplay.Controls
     /// </summary>
     public partial class InfoItemFloat4 : UserControl
     {
-        private const int Float4Size = 16;
         public static readonly DependencyProperty BytesRangeStartProperty = DependencyProperty.Register(
             nameof(BytesRangeStart),
             propertyType: typeof(int),
@@ -29,7 +28,7 @@ namespace Dirt3TelemetryDisplay.Controls
             nameof(BytesRangeEnd),
             propertyType: typeof(int),
             ownerType: typeof(InfoItemFloat4),
-            new PropertyMetadata(defaultValue: Float4Size));
+            new PropertyMetadata(defaultValue: DataConverter.Float4Size));
 
         public static readonly DependencyProperty FieldNameProperty = DependencyProperty.Register(
             nameof(FieldName),
