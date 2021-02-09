@@ -7,7 +7,7 @@
         xmlns:uc="clr-namespace:Dirt3TelemetryDisplay.Controls"
         xmlns:ViewModels="clr-namespace:Dirt3TelemetryDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Dirt 3 Telemetry Display" 
         Height="450" 
         Width="800" 
         MinWidth="510" 
