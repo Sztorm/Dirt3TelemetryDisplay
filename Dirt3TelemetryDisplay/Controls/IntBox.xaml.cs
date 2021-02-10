@@ -23,7 +23,15 @@ namespace Dirt3TelemetryDisplay.Controls
             nameof(IsReadOnly),
             propertyType: typeof(bool),
             ownerType: typeof(IntBox),
-            new PropertyMetadata(defaultValue: false));
+            new FrameworkPropertyMetadata(defaultValue: false,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty MaxTextLengthProperty = DependencyProperty.Register(
+            nameof(MaxTextLength),
+            propertyType: typeof(int),
+            ownerType: typeof(IntBox),
+            new FrameworkPropertyMetadata(defaultValue: 0,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             nameof(Value),
@@ -32,16 +40,48 @@ namespace Dirt3TelemetryDisplay.Controls
             new FrameworkPropertyMetadata(defaultValue: 0,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        public static readonly DependencyProperty MinValueProperty = DependencyProperty.Register(
+            nameof(MinValue),
+            propertyType: typeof(int),
+            ownerType: typeof(IntBox),
+            new FrameworkPropertyMetadata(defaultValue: int.MinValue,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty MaxValueProperty = DependencyProperty.Register(
+            nameof(MaxValue),
+            propertyType: typeof(int),
+            ownerType: typeof(IntBox),
+            new FrameworkPropertyMetadata(defaultValue: int.MaxValue,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public bool IsReadOnly
         {
             get => (bool)GetValue(IsReadOnlyProperty);
             set => SetValue(IsReadOnlyProperty, value);
         }
 
+        public int MaxTextLength
+        {
+            get => (int)GetValue(MaxTextLengthProperty);
+            set => SetValue(MaxTextLengthProperty, value);
+        }
+
         public int Value
         {
             get => (int)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
+        }
+
+        public int MinValue
+        {
+            get => (int)GetValue(MinValueProperty);
+            set => SetValue(MinValueProperty, value);
+        }
+
+        public int MaxValue
+        {
+            get => (int)GetValue(MaxValueProperty);
+            set => SetValue(MaxValueProperty, value);
         }
 
         public IntBox()

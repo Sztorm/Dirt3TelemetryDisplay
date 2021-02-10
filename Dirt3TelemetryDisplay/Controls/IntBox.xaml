@@ -3,25 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Dirt3TelemetryDisplay"
+             xmlns:local="clr-namespace:Dirt3TelemetryDisplay.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              x:Name="parent"
              d:DesignHeight="25" d:DesignWidth="100" MinWidth="20" Height="25">
-    <TextBox 
-        DataContext="{Binding ElementName=parent}"
-        VerticalAlignment="Center"
-        Text="{
-            Binding Value, 
-            TargetNullValue='0',
-            Mode=TwoWay, 
-            UpdateSourceTrigger=LostFocus,
-            StringFormat={}{0:D}}"
-        VerticalContentAlignment="Center"
-        Name="txtValue" 
-        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-        TextWrapping="Wrap"
-        AcceptsReturn="False"
-        SpellCheck.IsEnabled="False"
-        IsReadOnly="{Binding IsReadOnly}" />
+    <Grid>
+        <FrameworkElement DataContext="{Binding ElementName=parent}" x:Name="dummyElement" Visibility="Hidden"/>
+        <TextBox 
+            DataContext="{Binding ElementName=parent}"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+            TextWrapping="Wrap"
+            AcceptsReturn="False"
+            SpellCheck.IsEnabled="False"
+            IsReadOnly="{Binding IsReadOnly}"
+            MaxLength="{Binding MaxTextLength}">
+            <TextBox.Text>
+                <Binding 
+                    Path="Value" 
+                    TargetNullValue="0"
+                    Mode="TwoWay"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <local:RangeIntValidationRule>
+                            <local:RangeIntValidationRule.Range>
+                                <local:RangeIntDependency 
+                                    Min="{Binding 
+                                        Source={x:Reference dummyElement}, 
+                                        Path=DataContext.MinValue}"
+                                    Max="{Binding 
+                                        Source={x:Reference dummyElement}, 
+                                        Path=DataContext.MaxValue}"/>
+                            </local:RangeIntValidationRule.Range>
+                        </local:RangeIntValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+    </Grid>
 
 </UserControl>

@@ -84,7 +84,10 @@
                     Grid.Row="0" 
                     Grid.Column="2" 
                     Width="40" 
-                    Value="{Binding UiUpdateIntervalInMilliseconds }" />
+                    Value="{Binding UiUpdateIntervalInMilliseconds }"
+                    MinValue="10"
+                    MaxValue="1000"
+                    MaxTextLength="4"/>
             </Grid>
 
             <Grid 
@@ -107,7 +110,10 @@
                     Grid.Row="0" 
                     Grid.Column="1" 
                     Width="50" 
-                    Value="{Binding TelemetryPort}"/>
+                    Value="{Binding TelemetryPort}"
+                    MinValue="0"
+                    MaxValue="65535"
+                    MaxTextLength="5"/>
             </Grid>
         </Grid>
 
