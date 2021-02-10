@@ -22,7 +22,15 @@ namespace Dirt3TelemetryDisplay.Controls
             nameof(IsReadOnly),
             propertyType: typeof(bool),
             ownerType: typeof(FloatBox),
-            new PropertyMetadata(defaultValue: false));
+            new FrameworkPropertyMetadata(defaultValue: false,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty MaxTextLengthProperty = DependencyProperty.Register(
+            nameof(MaxTextLength),
+            propertyType: typeof(int),
+            ownerType: typeof(FloatBox),
+            new FrameworkPropertyMetadata(defaultValue: 0,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             nameof(Value),
@@ -35,6 +43,12 @@ namespace Dirt3TelemetryDisplay.Controls
         {
             get => (bool)GetValue(IsReadOnlyProperty);
             set => SetValue(IsReadOnlyProperty, value);
+        }
+
+        public int MaxTextLength
+        {
+            get => (int)GetValue(MaxTextLengthProperty);
+            set => SetValue(MaxTextLengthProperty, value);
         }
 
         public float Value
